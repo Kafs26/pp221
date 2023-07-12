@@ -16,10 +16,13 @@ public class MainApp {
 
         UserService userService = context.getBean(UserService.class);
 
-        userService.add(new User("User1", "Lastname1", "user1@mail.ru", new Car("First",10)));
-        userService.add(new User("User2", "Lastname2", "user2@mail.ru",new Car("Second",20)));
-        userService.add(new User("User3", "Lastname3", "user3@mail.ru", new Car("Third",30)));
-        userService.add(new User("User4", "Lastname4", "user4@mail.ru", new Car("Forth",40)));
+
+        userService.add(new  User("User1", "Lastname1", "user1@mail.ru", new Car ("model1", 1)));
+        userService.add(new User("User2", "Lastname2", "user2@mail.ru", new Car("model2", 2)));
+        userService.add(new User("User3", "Lastname3", "user3@mail.ru",new Car("model3", 3)));
+        userService.add(new User("User4", "Lastname4", "user4@mail.ru",new Car("model4", 4)));
+
+
 
         List<User> users = userService.listUsers();
         for (User user : users) {
@@ -29,6 +32,7 @@ public class MainApp {
             System.out.println("Email = " + user.getEmail());
             System.out.println("Car = " + user.getCar());
         }
+        System.out.println(userService.getUserByCar("model3", 3));
 
         context.close();
     }

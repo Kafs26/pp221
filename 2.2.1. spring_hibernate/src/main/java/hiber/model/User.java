@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
@@ -22,12 +22,20 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "user")
-//    @JoinColumn(name = "id", referencedColumnName = "user_id")
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 
 
     public User() {
+    }
+
+    public User(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
     public User(String firstName, String lastName, String email, Car car) {

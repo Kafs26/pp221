@@ -10,8 +10,11 @@ import java.io.Serializable;
 public class Car implements Serializable {
 
     @Id
-    @OneToOne
-    @MapsId
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private long id;
+
+    @OneToOne(mappedBy = "car")
     private User user;
 
     @Column(name = "model")
@@ -19,13 +22,26 @@ public class Car implements Serializable {
     @Column(name = "series")
     private int series;
 
+    public Car() {
+    }
 
     public Car(String model, int series) {
         this.model = model;
         this.series = series;
     }
 
-    public Car() {
+    public Car(User user, String model, int series) {
+        this.user = user;
+        this.model = model;
+        this.series = series;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setModel(String model) {
